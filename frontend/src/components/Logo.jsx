@@ -1,0 +1,25 @@
+import { Link } from 'react-router-dom';
+
+/** Brand mark: a nutrition bowl with a yellow leaf and a purple berry on a coral tile. */
+export function LogoMark({ className = 'logo-mark' }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="9" fill="#FF6B4A" />
+      <path d="M16.6 14.4c-.1-4.2 2.6-7.2 6.9-7.5.1 4.2-2.7 7.2-6.9 7.5Z" fill="#FFC857" />
+      <circle cx="11.6" cy="11.6" r="2.7" fill="#8B5CF6" />
+      <path d="M6.5 15.6h19a9.5 9.5 0 0 1-19 0Z" fill="#fff" />
+      <rect x="12" y="24.6" width="8" height="2.2" rx="1.1" fill="#fff" />
+    </svg>
+  );
+}
+
+export default function Logo({ to = '/' }) {
+  return (
+    <Link to={to} className="logo" aria-label="NutriPlan home">
+      <LogoMark />
+      <span>
+        Nutri<em>Plan</em>
+      </span>
+    </Link>
+  );
+}

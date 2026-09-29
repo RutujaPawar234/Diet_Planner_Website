@@ -1,0 +1,286 @@
+/* ==========================================================
+   NutriPlan design tokens + base styles
+   ========================================================== */
+:root {
+  /* ---- Neutrals: warm cream + white ---- */
+  --bg: #fff9f3;
+  --surface: #ffffff;
+  --surface-2: #fcf5ee;
+  --surface-3: #f5ece3;
+  --border: #f0e6dc;
+  --border-strong: #e3d6c8;
+
+  --text: #252525;
+  --text-2: #4b5563;
+  --muted: #6b7280;
+  --placeholder: #a3a3ad;
+
+  /* ---- Primary: Coral Orange (actions, CTAs, active states) ---- */
+  --primary: #ff6b4a;
+  --primary-hover: #f0532f;
+  --primary-soft: #fff0ec;
+  --primary-soft-2: #ffd9cf;
+  --primary-ink: #c23a1c; /* coral text on white / soft backgrounds (AA contrast) */
+  --primary-ring: rgba(255, 107, 74, 0.18);
+
+  /* ---- Secondary: Warm Yellow (nutrition highlights, calories, badges) ---- */
+  --yellow: #ffc857;
+  --yellow-strong: #f5b638;
+  --yellow-soft: #fff8dd;
+  --yellow-ink: #8a5a00;
+
+  /* ---- Accent: Berry Purple (charts, secondary buttons, progress) ---- */
+  --purple: #8b5cf6;
+  --purple-hover: #7c3aed;
+  --purple-soft: #f3eeff;
+  --purple-soft-2: #e2d6fe;
+  --purple-ink: #6d28d9;
+  --purple-ring: rgba(139, 92, 246, 0.18);
+
+  /* ---- Accent 2: Fresh Pink (sparingly) ---- */
+  --pink: #f472b6;
+  --pink-soft: #fdf0f7;
+  --pink-ink: #be3f86;
+
+  /* ---- Support: Blue (hydration / info) ---- */
+  --blue: #3b8cf6;
+  --blue-soft: #eef7ff;
+  --blue-ink: #1d64c4;
+
+  /* ---- Macros ---- */
+  --protein: var(--pink);
+  --protein-soft: var(--pink-soft);
+  --carbs: var(--yellow-strong);
+  --carbs-soft: var(--yellow-soft);
+  --fats: var(--purple);
+  --fats-soft: var(--purple-soft);
+
+  /* ---- Status ---- */
+  --success: #0e9f8e; /* teal — positive without a green theme */
+  --success-soft: #e6f7f4;
+  --warning: #b86e00;
+  --warning-soft: #fff4e0;
+  --danger: #d0342c;
+  --danger-soft: #fdecea;
+  --info: var(--blue-ink);
+  --info-soft: var(--blue-soft);
+
+  /* ---- Meal slots ---- */
+  --slot-breakfast: #f59e0b;
+  --slot-breakfast-soft: #fff8dd;
+  --slot-lunch: var(--primary);
+  --slot-lunch-soft: var(--primary-soft);
+  --slot-snacks: var(--pink);
+  --slot-snacks-soft: var(--pink-soft);
+  --slot-dinner: var(--purple);
+  --slot-dinner-soft: var(--purple-soft);
+
+  /* ---- Brand gradient (used sparingly) ---- */
+  --gradient-brand: linear-gradient(135deg, #ff6b4a 0%, #ff9a76 45%, #a78bfa 100%);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --shadow-xs: 0 1px 2px rgba(60, 35, 20, 0.05);
+  --shadow-sm: 0 1px 3px rgba(60, 35, 20, 0.06), 0 1px 2px rgba(60, 35, 20, 0.04);
+  --shadow: 0 6px 20px -6px rgba(60, 35, 20, 0.12), 0 2px 6px rgba(60, 35, 20, 0.04);
+  --shadow-lg: 0 24px 60px -18px rgba(60, 35, 20, 0.22);
+
+  --font: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --sidebar-w: 256px;
+  --topbar-h: 68px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--primary-ink);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--primary-soft-2);
+}
+
+/* ---------- utilities ---------- */
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.text-2 {
+  color: var(--text-2);
+}
+
+.small {
+  font-size: 13px;
+}
+
+.tiny {
+  font-size: 12px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.45s var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+}
