@@ -21,3 +21,6 @@ Thumbs.db
 .vscode/
 .idea/
 .vercel
+
+# Claude Code local config
+.claude/
