@@ -32,9 +32,12 @@ export const tokenStorage = {
  * Shared Axios instance for every request to the Express API.
  * The base URL comes from the VITE_API_URL environment variable.
  */
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
-  timeout: 15000,
+  baseURL: API_URL,
+  // Generous timeout: free hosting (Render) can take ~50 s to wake from sleep.
+  timeout: 60000,
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -54,7 +57,7 @@ api.interceptors.response.use(
     const message =
       payload?.message ||
       (error.code === 'ECONNABORTED'
-        ? 'The server took too long to respond. Please try again.'
+        ? 'The server is waking up (free hosting sleeps when idle). Please try again in a few seconds.'
         : status === 0
           ? 'Cannot reach the server. Check your connection or that the API is running.'
           : 'Something went wrong. Please try again.');
@@ -70,3 +73,11 @@ api.interceptors.response.use(
 );
 
 export default api;
+
+/**
+ * Fire-and-forget ping so a sleeping API host starts waking up as soon as the
+ * site opens, instead of when the user submits their first form.
+ */
+export function wakeServer() {
+  fetch(`${API_URL}/health`, { cache: 'no-store' }).catch(() => {});
+}
